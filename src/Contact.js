@@ -5,7 +5,7 @@ const Contact = () => {
                     <div className="col-md-12">
                         <div className="card flex-md-row mb-4 box-shadow h-md-250">
                             <div className="card-body d-flex flex-column align-items-start">
-                            <h1 className="mb-0"><a className="text-dark" href="#">Amin MESMOUDI</a></h1>
+                            <h1 className="mb-0"><span className="text-dark" >Amin MESMOUDI</span></h1>
                                 <div className="mb-1 text-muted">Assosiate Professor (Maitre de Conférences)</div>
                                 <p>Poitiers University</p>
                                 <p className="card-text mb-auto">Email : amin.mesmoudi[at]univ-poitiers.fr<br />
@@ -15,7 +15,7 @@ const Contact = () => {
                                 <a href="https://www.lias-lab.fr/members/aminmesmoudi">Web page</a>
                             </div>
                             <img style={{width: 160, height: 160}} className="card-img-right flex-auto d-none d-md-block" 
-                            src="amin.png" data-src="amin.png" alt="Card image cap"/>
+                            src="amin.png" data-src="amin.png" alt="Amin"/>
                         </div>
                         <div className="card flex-md-row mb-4 box-shadow h-md-250">
                             <div className="card-body d-flex flex-column align-items-start">

@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom'
 const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark flex-md-nowrap p-0">
-                <a className="navbar-brand">&ensp; RDF_QDAG &ensp;</a>
+                <span className="navbar-brand">&ensp; RDF_QDAG &ensp;</span>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">

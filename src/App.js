@@ -3,6 +3,7 @@ import Home from './Home';
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import Contact from './Contact';
 import PublicationList from './PublicationList';
+import Demo from './Demo';
 function App() {
   return (
     <Router>
@@ -10,6 +11,9 @@ function App() {
           <Switch>
               <Route exact path="/">
                   <Home />
+              </Route>
+              <Route path="/demo">
+                  <Demo />
               </Route>
               <Route path="/contact">
                   <Contact />

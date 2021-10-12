@@ -1,6 +1,4 @@
-import useFetch from "./useFetch";
 const Home = () => {
-    //const {data:blogs,isPending,error} = useFetch("http://localhost:8005/blogs")
     return (  
         <div>
             <div className="jumbotron">
@@ -42,10 +40,10 @@ const Home = () => {
                     <li>rawdata/watdiv100k/watdiv100k : the path of raw data</li>
                     <li>data/watdiv100k : path of binary data</li>
                     </ul>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/6VB9kPnDrLs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/6VB9kPnDrLs" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title="1"></iframe>
                     <h2 id="run-queries-">Run queries</h2>
                     <p><code>java -jar -Djava.library.path=solibs/ gquery.jar bindata/watdiv100k/ queries/watdiv/gStore/S1.in</code></p>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/sApmA6Sl1Hc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/sApmA6Sl1Hc" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title="2"></iframe>
                 </div>
             </div>
         </div>
