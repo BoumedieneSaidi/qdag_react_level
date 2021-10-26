@@ -14,8 +14,6 @@ const Contact = () => {
                                 </p>
                                 <a href="https://www.lias-lab.fr/members/aminmesmoudi">Web page</a>
                             </div>
-                            <img style={{width: 160, height: 160}} className="card-img-right flex-auto d-none d-md-block" 
-                            src="amin.png" data-src="amin.png" alt="Amin"/>
                         </div>
                         <div className="card flex-md-row mb-4 box-shadow h-md-250">
                             <div className="card-body d-flex flex-column align-items-start">

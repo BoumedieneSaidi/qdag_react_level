@@ -1,0 +1,18 @@
+{
+    "databases":{
+        "Watdiv100k":{
+            "Watdiv Q1":"SELECT ?v0 ?v4 ?v6 ?v7 WHERE\n{\n?v0 <http://schema.org/caption> ?v1 .\n?v0 <http://schema.org/text> ?v2 .\n?v0 <http://schema.org/contentRating> ?v3 .\n?v0 <http://purl.org/stuff/rev#hasReview> ?v4 .\n?v4 <http://purl.org/stuff/rev#title> ?v5 .\n?v4 <http://purl.org/stuff/rev#reviewer> ?v6 .\n?v7 <http://schema.org/actor> ?v6 .\n?v7 <http://schema.org/language> ?v8 .\n}",
+            "Watdiv Q2":"SELECT ?v0 ?v3 ?v4 ?v8 WHERE {\n?v0 <http://schema.org/legalName> ?v1 .\n?v0 <http://purl.org/goodrelations/offers> ?v2 .\n?v2 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country5> .\n?v2 <http://purl.org/goodrelations/includes> ?v3 .\n?v4 <http://schema.org/jobTitle> ?v5 .\n?v4 <http://xmlns.com/foaf/homepage> ?v6 .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v7 .\n?v7 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v3 .\n?v3 <http://purl.org/stuff/rev#hasReview> ?v8 .\n?v8 <http://purl.org/stuff/rev#totalVotes> ?v9 .\n}\n"
+        },
+        "Yago":{
+            "Yago Q1":"SELECT distinct ?name1 ?name2 WHERE \n{\n?p1 <http://yago-knowledge.org/resource/hasFamilyName>?name1.\n?p2 <http://yago-knowledge.org/resource/hasFamilyName>?name2.\n?p1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> \\wordnet scientist 110560637\".\n?p2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> \\wordnet scientist 110560637\".\n?p1 [] ?city.\n?p2 [] ?city.\n?city <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <wordnet site 108651247>.\nFILTER\n(?p1 != ?p2) \n}",
+            "Yago Q2": "SELECT distinct ?name WHERE \n{ \n?p <http://www.w3.org/2000/01/rdf-schema#label> ?name.\n?p [] ?c1.\n?p [] ?c2.\n?c1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <wordnet village 108672738>.\n?c2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <wordnet site 108651247>. \n?c1 <http://www.w3.org/2000/01/rdf-schema#label> \\London\".\n?c2 <http://www.w3.org/2000/01/rdf-schema#label> \\Paris\". }"
+        }
+    },
+    "optimizer_strategies":["Go FAST","Heuristics"],
+    "default_optimizer_strategy":"Go FAST",
+    "default_spatial_strategy":"RDF First",
+    "node_address":"http://localhost:",
+    "node_port":3005,
+    "defautl_res_message":"> Welcome to RDF_QDAG"
+}

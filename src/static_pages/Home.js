@@ -5,7 +5,7 @@ const Home = () => {
                 <div className="container">
                     <h1 className="display-3">RDF_QDAG!</h1>
                     <p>This website contains a set of tools allowing to test the RDF QDAG system. This system relies on graph exploration and fragmentation in order to evaluate SPARQL queries. Various libraries and scripts are provided in order to deploy the system in a specific environment. A web interface is also provided in order to show how the system works. Currently, queries that contain BGP, Wildcards, Order by and Group By are supported.</p>
-                    <p><a className="btn btn-primary btn-lg" href="https://github.com/amesmoudi/RDF_QDAG" role="button">Go to Github &raquo;</a></p>
+                    <p><a className="btn btn-primary btn-lg" href="https://github.com/amesmoudi/RDF_QDAG" role="button" target="_blank" rel="noopener noreferrer">Go to Github &raquo;</a></p>
                 </div>
             </div>
             <div>
@@ -16,7 +16,7 @@ const Home = () => {
                     <p><code>sudo apt-get update</code></p>
                     <h2>Installing Packages </h2>
                     <h3 id="oracle-jdk-11-">Oracle JDK 11</h3>
-                    <p>download manually the jdk-*_linux-x64_bin.tar.gz file from: <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Oracle JDK 11</a></p>
+                    <p>download manually the jdk-*_linux-x64_bin.tar.gz file from: <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html" target="_blank" rel="noopener noreferrer">Oracle JDK 11</a></p>
                     <p><code>sudo mkdir /var/cache/oracle-jdk11-installer-local/</code></p>
                     <p><code>sudo mv jdk-11.0.8_linux-x64_bin.tar.gz /var/cache/oracle-jdk11-installer-local/</code></p>
                     <p><code>sudo add-apt-repository ppa:linuxuprising/java</code></p>

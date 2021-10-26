@@ -1,50 +1,65 @@
-import MetaDataList from "./MetaDataList";
+import ExecParamsSideBar from "./ExecParamsSideBar";
 import MainDemo from "./MainDemo";
-import useFetch from "./useFetch";
-import { useState } from "react";
+import { useState} from "react";
+import useFetch from "./utils/useFetch";
 const Demo = () => {
-    const defaultQuery  = "SELECT ?v0 ?v2 WHERE \n"+
-    "{\n"+
-        "?v0 <http://ogp.me/ns#tag> <http://db.uwaterloo.ca/~galuc/wsdbm/Topic132> .\n"+ 
-        "?v0 <http://schema.org/caption> ?v2 .\n"+
-    "}";
-    const {data:metadata,isPending,error} = useFetch("http://193.55.163.167:8080/get-metadata") 
-    const [selectedQueryValue, setSelectedQueryValue] = useState(defaultQuery)
-    const [selectedQueryKey, setSelectedQueryKey] = useState("")
-    const [selectedDB, setSelectedDB] = useState("watdiv100k")
-    const [result, setResult] = useState("> Welcome to RDF_QDAG")
-    const handleDBChange = (event) =>{
-        event.preventDefault()
-        const selectedDBName = event.target.getAttribute('data-db');
-        setSelectedDB(selectedDBName);
-        setSelectedQueryKey(Object.keys(metadata.databases[selectedDBName])[0]);
+    /********************** Props variables ***************************/
+    const config = require('./config.json');
+    const node_url = config.node_address + config.node_port;
+    const defaultDB = Object.keys(config.databases)[0];
+    const [currentDB,setCurrentDB] = useState(defaultDB);
+    const defaultQuery = Object.keys(config.databases[defaultDB])[0];
+    const [query,setQuery] = useState(config.databases[defaultDB][defaultQuery]);
+    const [selectedQueryRadio,setSelectedQueryRadio] = useState(defaultQuery)
+    const [isSpatial,setIsSpatial] = useState(false);
+    const [spatialStrategy,setSpatialStrategy] = useState(config.default_spatial_strategy)
+    const [isElag,setIsElag] = useState(false);
+    const [optimizer,setOptimizer] = useState(config.optimizer_strategies[0]);
+    const [rdfToo,setRdfToo] = useState(false);
+    const [result, setResult] = useState(config.defautl_res_message)
+    /**********************************************************************/
+
+    /******************** Hundle changing query and database ****************/
+    const changeQuery = (newQuery) => {
+        setSelectedQueryRadio(newQuery);
+        setQuery(config.databases[currentDB][newQuery]);
     }
-    const handleQueryChange = (event,selectedDB) =>{
-        event.preventDefault()
-        const selectedQueryName = event.target.getAttribute('data-query');
-        setSelectedQueryKey(selectedQueryName)
-        setSelectedQueryValue(metadata.databases[selectedDB][selectedQueryName])
+    const changeDB = (newDB) => {
+        setCurrentDB(newDB)
+        let newQKey = Object.keys(config.databases[newDB])[0];
+        setSelectedQueryRadio(newQKey);
+        setQuery(config.databases[newDB][newQKey]);
     }
-    const runQuery = (selectedDB,selectedQueryKey) => {
-        fetch("http://193.55.163.167:8080/run-query?query="+selectedQueryKey+"&db="+selectedDB).then(res => {
+    /************************************************************************/
+
+    /***    Node js Api methods [get user session queries, and run query] ********/
+    const {data:queriesWithResults} = useFetch(node_url+"/demo");
+
+    const runQuery = () => {
+        var url = new URL(node_url+"/run-query");
+        var params = {currentDB:currentDB, query:query,optimizer:optimizer,isElag:isElag,spatialStrategy:spatialStrategy,rdfToo:rdfToo};
+        url.search = new URLSearchParams(params).toString();
+        return fetch(url).then(res => {
             if(!res.ok)
                 throw Error('could not fetch the data for that ressource')
-            return res.text();
+            return res.json();
         }).then((data) => {
-            //console.log(data)
-            setResult(data)
-        }).catch(err => {
-            console.log(err)
-        })
+            return data["userQuery"];
+        }).catch(err => { console.log(err)});
     }
+    let execParamsProps = {
+            isSpatial:isSpatial, setIsSpatial:setIsSpatial, isElag:isElag, setIsElag:setIsElag, currentDB:currentDB,changeDB:changeDB, 
+            databases:config.databases, selectedQueryRadio :selectedQueryRadio, changeQuery:changeQuery,spatialStrategy:spatialStrategy, 
+            setSpatialStrategy:setSpatialStrategy, optimizer:optimizer, setOptimizer:setOptimizer, rdfToo:rdfToo, setRdfToo:setRdfToo, 
+            optimizerStrategies:config.optimizer_strategies
+    };
+    let mainDemoProps = {query:query,runQuery:runQuery,result:result,setResult:setResult,queriesWithResults:queriesWithResults};
     return (  
         <div className="container-fluid">
             <div className="row">
-                {error && <div>{error}</div>}
-                {isPending && <div>loading</div>}
-                {metadata && <MetaDataList metadata={metadata} handleQueryChange={handleQueryChange} handleDBChange={handleDBChange} 
-                selectedQueryKey = {selectedQueryKey} selectedDB={selectedDB}/>}
-                {<MainDemo selectedQueryValue={selectedQueryValue} runQuery={runQuery} selectedDB={selectedDB} selectedQueryKey={selectedQueryKey} result={result}/>}
+                <ExecParamsSideBar {...execParamsProps}/>
+                {queriesWithResults && <MainDemo {...mainDemoProps}/>
+                }
             </div>
         </div>
     );
