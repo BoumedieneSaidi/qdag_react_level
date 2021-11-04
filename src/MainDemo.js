@@ -1,18 +1,15 @@
-import { useState } from "react";
 import Stat from "./Stat";
-const MainDemo = (mainDemoProp) => {
-    const {query,runQuery,result, setResult,queriesWithResults} = {...mainDemoProp};
-    /*********************construct Stat Part queries *******************/
-    const userQueries = JSON.parse(queriesWithResults["queriesWithResults"]).map(stringQuery => {
-        return JSON.parse(stringQuery);
-    });
-    const [userQueriesState,setUserQueriesState] = useState(userQueries);   
+import useFetch from "./utils/useFetch";
+const MainDemo = ({query,runQuery,result, setResult, nodeUrl}) => {
+    /** fetch data queries return {"queriesWithResults":[]} */
+    const {data,setData} = useFetch(nodeUrl+"/demo");
+    /** Run Query: update the existing queries after getting the result*/
     const hundleRunQuery = () => {
-        Promise.all([runQuery(userQueriesState)]).then(([newQueryWithResult]) => {
+        Promise.all([runQuery()]).then(([newQueryWithResult]) => {
             if(Object.keys(newQueryWithResult).length !== 0){
-                let newArr = [...userQueriesState];
-                newArr[userQueriesState.length] = newQueryWithResult;
-                setUserQueriesState(newArr)
+                let newArr = [...data["queriesWithResults"]];
+                newArr[data["queriesWithResults"].length] = newQueryWithResult;
+                setData({"queriesWithResults":newArr});
                 setResult(newQueryWithResult["result"]);
             }
         });
@@ -32,19 +29,11 @@ const MainDemo = (mainDemoProp) => {
             <div className="container-fluid">
                 <form>
                     <div className="form-group">
-                        <label htmlFor="QueryTextarea">Query Example</label>
-                        <textarea className="form-control" id="QueryTextarea" rows="7" value = {query} onChange={()=>{}}/>
+                        <textarea className="form-control" id="QueryTextarea" rows="10" value = {query} onChange={()=>{}}/>
                     </div>
                 </form>
             </div>
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 className="h2">Stats</h1>
-            </div>
-            <div className="container-fluid">
-                <div>
-                    <Stat userQueriesState={userQueriesState}/>
-                </div>
-            </div>
+
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 className="h2">Results</h1>
             </div>
@@ -55,7 +44,14 @@ const MainDemo = (mainDemoProp) => {
                 </pre>
             </div>
             </div>
-            
+            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 className="h2">Stats</h1>
+            </div>
+            <div className="container-fluid">
+                <div>
+                    {data && <Stat userQueries={data}/>}
+                </div>
+            </div>
         
         </main>
     );

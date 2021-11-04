@@ -10,9 +10,11 @@
         }
     },
     "optimizer_strategies":["Go FAST","Heuristics"],
-    "default_optimizer_strategy":"Go FAST",
-    "default_spatial_strategy":"RDF First",
+    "spatial_strategies":["RDF First","Spatial First"],
     "node_address":"http://localhost:",
     "node_port":3005,
-    "defautl_res_message":"> Welcome to RDF_QDAG"
+    "defautl_res_message":"> Welcome to RDF_QDAG",
+    "is_spatial":true,
+    "is_elag":true,
+    "rdf_too":true
 }

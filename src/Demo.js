@@ -1,7 +1,6 @@
 import ExecParamsSideBar from "./ExecParamsSideBar";
 import MainDemo from "./MainDemo";
 import { useState} from "react";
-import useFetch from "./utils/useFetch";
 const Demo = () => {
     /********************** Props variables ***************************/
     const config = require('./config.json');
@@ -11,11 +10,11 @@ const Demo = () => {
     const defaultQuery = Object.keys(config.databases[defaultDB])[0];
     const [query,setQuery] = useState(config.databases[defaultDB][defaultQuery]);
     const [selectedQueryRadio,setSelectedQueryRadio] = useState(defaultQuery)
-    const [isSpatial,setIsSpatial] = useState(false);
-    const [spatialStrategy,setSpatialStrategy] = useState(config.default_spatial_strategy)
-    const [isElag,setIsElag] = useState(false);
+    const [isSpatial,setIsSpatial] = useState(config.is_spatial);
+    const [spatialStrategy,setSpatialStrategy] = useState(config.spatial_strategies[0])
+    const [isElag,setIsElag] = useState(config.is_elag);
     const [optimizer,setOptimizer] = useState(config.optimizer_strategies[0]);
-    const [rdfToo,setRdfToo] = useState(false);
+    const [rdfToo,setRdfToo] = useState(config.rdf_too);
     const [result, setResult] = useState(config.defautl_res_message)
     /**********************************************************************/
 
@@ -31,13 +30,11 @@ const Demo = () => {
         setQuery(config.databases[newDB][newQKey]);
     }
     /************************************************************************/
-
-    /***    Node js Api methods [get user session queries, and run query] ********/
-    const {data:queriesWithResults} = useFetch(node_url+"/demo");
-
+    /** Run Query : it need params from the two component main demo and execPARASM <Communication> */
     const runQuery = () => {
         var url = new URL(node_url+"/run-query");
-        var params = {currentDB:currentDB, query:query,optimizer:optimizer,isElag:isElag,spatialStrategy:spatialStrategy,rdfToo:rdfToo};
+        var params = {currentDB:currentDB, query:query,optimizer:optimizer,isElag:isElag,isSpatial:isSpatial,spatialStrategy:spatialStrategy,rdfToo:rdfToo};
+        console.log(params);
         url.search = new URLSearchParams(params).toString();
         return fetch(url).then(res => {
             if(!res.ok)
@@ -47,19 +44,21 @@ const Demo = () => {
             return data["userQuery"];
         }).catch(err => { console.log(err)});
     }
+   
+
+    
     let execParamsProps = {
             isSpatial:isSpatial, setIsSpatial:setIsSpatial, isElag:isElag, setIsElag:setIsElag, currentDB:currentDB,changeDB:changeDB, 
             databases:config.databases, selectedQueryRadio :selectedQueryRadio, changeQuery:changeQuery,spatialStrategy:spatialStrategy, 
             setSpatialStrategy:setSpatialStrategy, optimizer:optimizer, setOptimizer:setOptimizer, rdfToo:rdfToo, setRdfToo:setRdfToo, 
-            optimizerStrategies:config.optimizer_strategies
+            optimizerStrategies:config.optimizer_strategies,spatialStrategies:config.spatial_strategies
     };
-    let mainDemoProps = {query:query,runQuery:runQuery,result:result,setResult:setResult,queriesWithResults:queriesWithResults};
+    let mainDemoProps = {query:query,runQuery:runQuery,result:result,setResult:setResult,nodeUrl:node_url};
     return (  
         <div className="container-fluid">
             <div className="row">
                 <ExecParamsSideBar {...execParamsProps}/>
-                {queriesWithResults && <MainDemo {...mainDemoProps}/>
-                }
+                <MainDemo {...mainDemoProps} />
             </div>
         </div>
     );

@@ -1,8 +1,9 @@
 import { Chart } from "react-google-charts";
-const Stat = ({userQueriesState}) => {
-    let data = [['Exec Time', 'QDAG', 'RDF']];
+const Stat = ({userQueries}) => {
+    console.log("User Queries:",userQueries)
+    let data = [['Exec Time', 'QDAG', 'RDF-3X']];
     let i = 1;
-    userQueriesState.forEach(userQuery => {
+    userQueries["queriesWithResults"].forEach(userQuery => {
          data.push(["Query "+i++, userQuery["execTimeQDAG"],userQuery["execTimeRDF"]]);
     });
     return (  
