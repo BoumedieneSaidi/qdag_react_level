@@ -115,3 +115,14 @@ body {
 .result-section{
   color: white;
 }
+
+#mappa{
+  position: relative;
+  height: 50%;
+}
+
+#map-container  {
+  position: relative;
+  height: inherit; 
+  width: inherit;
+}

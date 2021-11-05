@@ -1,7 +1,13 @@
 import { Chart } from "react-google-charts";
 const Stat = ({userQueries}) => {
-    console.log("User Queries:",userQueries)
-    let data = [['Exec Time', 'QDAG', 'RDF-3X']];
+    let lastUserQuery,data;
+    if(userQueries["queriesWithResults"].length != 0)
+     lastUserQuery = userQueries["queriesWithResults"][userQueries["queriesWithResults"].length - 1];
+    if(lastUserQuery !== undefined)
+        data = [['Exec Time', 'QDAG - '+lastUserQuery["optimizer"]+(lastUserQuery['isElag'] ==='true' ? '- with pruning':'')
+    +(lastUserQuery['isSpatial'] ==='true' ? '- '+lastUserQuery['spatialStrategy']:''),'RDF-3X']];
+    else
+        data = [['Exec Time', 'QDAG','RDF-3X']];
     let i = 1;
     userQueries["queriesWithResults"].forEach(userQuery => {
          data.push(["Query "+i++, userQuery["execTimeQDAG"],userQuery["execTimeRDF"]]);
