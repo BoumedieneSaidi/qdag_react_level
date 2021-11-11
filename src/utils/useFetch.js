@@ -13,6 +13,7 @@ const useFetch = (url) => {
                     throw Error('could not fetch the data for that ressource')
                 return res.json();
             }).then((data) => {
+                console.log(data);
                 setData(data)
                 setIsPending(false)
                 setError(null)

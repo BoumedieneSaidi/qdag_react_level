@@ -3,6 +3,7 @@ import useFetch from "./utils/useFetch";
 import { useState } from "react";
 import Map from "./Map";
 const MainDemo = ({query,runQuery,result, setResult, nodeUrl}) => {
+    console.log("Main demo 3mom");
     const [isSpa, setIsSpa] = useState(false)
     const [showRow, setShowRow] = useState(false)
     const [resultType, setResultType] = useState(1)
@@ -11,8 +12,14 @@ const MainDemo = ({query,runQuery,result, setResult, nodeUrl}) => {
     const {data,setData} = useFetch(nodeUrl+"/demo");
     /** Run Query: update the existing queries after getting the result*/
     const hundleRunQuery = () => {
-        Promise.all([runQuery()]).then(([newQueryWithResult]) => {
-            if(Object.keys(newQueryWithResult).length !== 0){
+        Promise.all([runQuery()]).then(([newData]) => {
+            setData(newData);
+            setResult(newData["currentQuery"]["result"]);
+            setResultType(1);
+            setIsSpa(newData["currentQuery"]['isSpatial'] === 'true');
+            if(showRow === false)
+                setShowRow(true)
+            /*if(Object.keys(newQueryWithResult).length !== 0){
                 let newArr = [...data["queriesWithResults"]];
                 newArr[data["queriesWithResults"].length] = newQueryWithResult;
                 setData({"queriesWithResults":newArr});
@@ -21,7 +28,7 @@ const MainDemo = ({query,runQuery,result, setResult, nodeUrl}) => {
                 setIsSpa(newQueryWithResult['isSpatial'] === 'true');
                 if(showRow === false)
                     setShowRow(true)
-            }
+            }*/
         });
     }
     /**********************************************************************/
@@ -74,7 +81,7 @@ const MainDemo = ({query,runQuery,result, setResult, nodeUrl}) => {
             </div>
             <div className="container-fluid">
                 <div>
-                    {data && <Stat userQueries={data}/>}
+                    {data && <Stat data={data}/>}
                 </div>
             </div>
         

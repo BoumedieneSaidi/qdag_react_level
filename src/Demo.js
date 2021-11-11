@@ -33,7 +33,8 @@ const Demo = () => {
     /** Run Query : it need params from the two component main demo and execPARASM <Communication> */
     const runQuery = () => {
         var url = new URL(node_url+"/run-query");
-        var params = {currentDB:currentDB, query:query,optimizer:optimizer,isElag:isElag,isSpatial:isSpatial,spatialStrategy:spatialStrategy,rdfToo:rdfToo};
+        var params = {currentDB:currentDB, query:query,optimizer:optimizer,isElag:isElag,isSpatial:isSpatial
+                    ,spatialStrategy:spatialStrategy,rdfToo:rdfToo,queryName:selectedQueryRadio};
         console.log(params);
         url.search = new URLSearchParams(params).toString();
         return fetch(url).then(res => {
@@ -41,7 +42,7 @@ const Demo = () => {
                 throw Error('could not fetch the data for that ressource')
             return res.json();
         }).then((data) => {
-            return data["userQuery"];
+            return data;
         }).catch(err => { console.log(err)});
     }
    

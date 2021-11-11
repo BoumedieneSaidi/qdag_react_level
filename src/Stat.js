@@ -1,17 +1,37 @@
 import { Chart } from "react-google-charts";
-const Stat = ({userQueries}) => {
-    let lastUserQuery,data;
-    if(userQueries["queriesWithResults"].length != 0)
-     lastUserQuery = userQueries["queriesWithResults"][userQueries["queriesWithResults"].length - 1];
-    if(lastUserQuery !== undefined)
-        data = [['Exec Time', 'QDAG - '+lastUserQuery["optimizer"]+(lastUserQuery['isElag'] ==='true' ? '- with pruning':'')
-    +(lastUserQuery['isSpatial'] ==='true' ? '- '+lastUserQuery['spatialStrategy']:''),'RDF-3X']];
-    else
-        data = [['Exec Time', 'QDAG','RDF-3X']];
-    let i = 1;
-    userQueries["queriesWithResults"].forEach(userQuery => {
-         data.push(["Query "+i++, userQuery["execTimeQDAG"],userQuery["execTimeRDF"]]);
-    });
+const Stat = ({data}) => {
+    var dataTest = [
+        data["queryParamsGroups"]
+    ];
+    for (const [key, value] of Object.entries(data["queriesSeries"])) {
+      let arr = [key];
+      data["queryParamsGroups"].forEach((serieConf,i) => {
+        if(data["isRDFExecuted"] && i === data["queryParamsGroups"].length - 1){
+          if(data['rDF3XSeries'][key] !== undefined)
+            arr.push(data['rDF3XSeries'][key]);
+          else arr.push(0);
+        }else if(i > 0)
+          arr.push(value[serieConf] !== undefined ? value[serieConf]["execTimeQDAG"]:0)
+      });
+      dataTest.push(arr);
+    }
+    var optionsTest = {
+      title: 'QDAG Performance',
+      chartArea: { width: '50%' },  
+      animation: {
+          duration: 1000,
+          easing: 'out',
+          startup: true,
+      },  
+      hAxis: {
+          title: 'Queries',
+          minValue: 0,
+      },
+      vAxis: {
+          title: 'Exec Time',
+      },
+      isStacked:true
+   };
     return (  
         <div>
              <Chart
@@ -19,24 +39,8 @@ const Stat = ({userQueries}) => {
                     height={'700px'}
                     chartType="ColumnChart"
                     loader={<div>Loading QDAG Queries Performance</div>}
-                    data={data}
-                    options={{
-                        title: 'QDAG Performance',
-                        chartArea: { width: '50%' },  
-                        animation: {
-                            duration: 1000,
-                            easing: 'out',
-                            startup: true,
-                        },  
-                        hAxis: {
-                            title: 'Queries',
-                            minValue: 0,
-                        },
-                        vAxis: {
-                            title: 'Exec Time',
-                        },
-                     }}
-                    // For tests
+                    data={dataTest}
+                    options={optionsTest}
                     rootProps={{ 'data-testid': '1' }}
             />
        </div>
