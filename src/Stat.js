@@ -30,7 +30,7 @@ const Stat = ({data}) => {
       vAxis: {
           title: 'Exec Time',
       },
-      isStacked:true
+      //isStacked:true
    };
     return (  
         <div>
