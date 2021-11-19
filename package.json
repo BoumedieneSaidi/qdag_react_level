@@ -3,20 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-regular-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.15",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap-switch-button-react": "^1.2.0",
-    "bootstrap4-toggle": "^3.6.1",
     "react": "^17.0.2",
-    "react-bootstrap-toggle": "^2.3.2",
     "react-dom": "^17.0.2",
-    "react-dynamic-charts": "^1.0.5",
     "react-google-charts": "^3.0.15",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
@@ -24,6 +16,7 @@
     "mapbox-gl": "^1.11.1",
     "wellknown": "^0.5.0"
   },
+  "proxy":"http://localhost:3005",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

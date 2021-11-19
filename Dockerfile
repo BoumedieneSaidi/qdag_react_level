@@ -9,11 +9,10 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
+RUN npm install --no-audit
 
 # add app
 COPY . ./
 
 # start app
-CMD ["npm", "start"]    
+CMD ["npm", "start npm install"]    
