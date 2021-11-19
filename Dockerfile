@@ -15,4 +15,4 @@ RUN npm install --no-audit
 COPY . ./
 
 # start app
-CMD ["npm", "start npm install"]    
+CMD ["npm", "start"]    
