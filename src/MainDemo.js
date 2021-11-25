@@ -4,14 +4,43 @@ import { useState /*useEffect*/ } from "react";
 import Map from "./Map";
 import Spinner from "react-bootstrap/Spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import DataTable from "react-data-table-component";
-//const axios = require("axios").default;
+import DataTable from "react-data-table-component";
+const axios = require("axios").default;
 const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
   /************************* Data Table  ******************************/
-  /*const [resultData, setResultData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [currQuery, setCurrQuery] = useState({});
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
+  const [resultData, setResultData] = useState([]);
+  //const [loading, setLoading] = useState(false);
+  const fetchMappings = async (page) => {
+    //setLoading(true);
+
+    const response = await axios.get(
+      `http://localhost:3005/fetchData?page=${page}&per_page=${perPage}&delay=1&currQuery=${currQuery["queryName"]}&currDb=${currQuery["currentDB"]}`
+    );
+    console.log("response datatata,", response.data.data);
+    setResultData(response.data.data);
+    console.log("Total", response.data);
+    //setLoading(false);
+  };
+
+  const handlePageChange = (page) => {
+    fetchMappings(page);
+  };
+
+  const handlePerRowsChange = async (newPerPage, page) => {
+    //setLoading(true);
+
+    const response = await axios.get(
+      `http://localhost:3005/fetchData?page=${page}&per_page=${newPerPage}&delay=1&currQuery=${currQuery["queryName"]}&currDb=${currQuery["currentDB"]}`
+    );
+
+    setResultData(response.data.data);
+    setPerPage(newPerPage);
+    //setLoading(false);
+  };
+  /*
 
   const fetchUsers = async (page) => {
     setLoading(true);
@@ -64,6 +93,10 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
       }
       setData(newData);
       setResult(newData["currentQuery"]["result"]);
+      setCurrQuery(newData["currentQuery"]);
+      setResultData(newData["currentQuery"]["result"]);
+      setTotalRows(newData["currentQuery"]["nbrRes"]);
+      console.log("HHHHHHA HUYA:", newData["currentQuery"]);
       setResultType(1);
       setIsSpa(newData["currentQuery"]["isSpatial"] === "true");
       if (showRow === false) setShowRow(true);
@@ -85,11 +118,25 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
   if (showResult && resultType === 1)
     resultSection = (
       <div className="container-fluid">
-        <div className="result-div">
-          <pre id="result-section" className="result-section">
-            {result}
-          </pre>
-        </div>
+        <DataTable
+          title="Mappings"
+          columns={[
+            {
+              name: "Row No",
+              selector: (row) => row.no,
+            },
+            {
+              name: "Mapping",
+              selector: (row) => row.mapping,
+            },
+          ]}
+          data={resultData}
+          pagination
+          paginationServer
+          paginationTotalRows={totalRows}
+          onChangeRowsPerPage={handlePerRowsChange}
+          onChangePage={handlePageChange}
+        />
       </div>
     );
   else if (showResult && resultType === 2)
@@ -98,7 +145,6 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
         <Map />
       </div>
     );
-
   return (
     <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -143,9 +189,9 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
                 setShowResult(!showResult);
               }}
             >
-              Hide
+              {showResult ? "Hide" : "Show"}
             </button>
-            {showRow && (
+            {showResult && showRow && (
               <button
                 className="btn btn-sm btn-outline-secondary"
                 onClick={() => {
@@ -155,7 +201,7 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
                 Row
               </button>
             )}
-            {isSpa && (
+            {showResult && isSpa && (
               <button
                 className="btn btn-sm btn-outline-secondary"
                 onClick={() => {
@@ -193,8 +239,8 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
         onChangeRowsPerPage={handlePerRowsChange}
         onChangePage={handlePageChange}
       />*/}
-      <div className="d-flex justify-content-center">
-        {isLoading ? (
+      {isLoading ? (
+        <div className="d-flex justify-content-center">
           <Spinner
             animation="border"
             role="status"
@@ -203,10 +249,10 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
           >
             <span className="sr-only">Loading...</span>
           </Spinner>
-        ) : (
-          resultSection
-        )}
-      </div>
+        </div>
+      ) : (
+        resultSection
+      )}
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h1 className="h2">Stats</h1>
       </div>
