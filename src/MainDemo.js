@@ -17,7 +17,7 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
     //setLoading(true);
 
     const response = await axios.get(
-      `http://localhost:3005/fetchData?page=${page}&per_page=${perPage}&delay=1&currQuery=${currQuery["queryName"]}&currDb=${currQuery["currentDB"]}`
+      `http://localhost:3005/fetchData?page=${page}&per_page=${perPage}&delay=1&resultFile=${currQuery["resultFile"]}`
     );
     console.log("response datatata,", response.data.data);
     setResultData(response.data.data);
@@ -33,7 +33,7 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
     //setLoading(true);
 
     const response = await axios.get(
-      `http://localhost:3005/fetchData?page=${page}&per_page=${newPerPage}&delay=1&currQuery=${currQuery["queryName"]}&currDb=${currQuery["currentDB"]}`
+      `http://localhost:3005/fetchData?page=${page}&per_page=${newPerPage}&delay=1&resultFile=${currQuery["resultFile"]}`
     );
 
     setResultData(response.data.data);
@@ -130,10 +130,12 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
               selector: (row) => row.mapping,
             },
           ]}
+          paginationPerPage={perPage}
           data={resultData}
           pagination
           paginationServer
           paginationTotalRows={totalRows}
+          responsive
           onChangeRowsPerPage={handlePerRowsChange}
           onChangePage={handlePageChange}
         />
