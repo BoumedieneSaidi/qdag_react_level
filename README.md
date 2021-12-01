@@ -1,4 +1,7 @@
-# launch the app 
-# 1 - create the image : sudo docker build -t react-app .
-# 2 - launch the container : sudo docker run -it --rm -v ${PWD}:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true react-app
-# 3- Target@ must be configurable !!
+# launch the app
+
+# 1- change the api adress in the env file
+
+# 1 - create the image and the container : sudo docker-compose -f docker-compose.prod.yml build
+
+# 2 - launch the container : sudo docker run -p 3000:3000 --name react-ct react-img

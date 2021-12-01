@@ -1,6 +1,7 @@
 import ExecParamsSideBar from "./ExecParamsSideBar";
 import MainDemo from "./MainDemo";
 import { useState } from "react";
+require("dotenv").config();
 const Demo = () => {
   /********************** Props variables ***************************/
   const config = require("./config.json");
@@ -44,7 +45,11 @@ const Demo = () => {
       rdfToo: rdfToo,
       queryName: selectedQueryRadio,
     };
-    return fetch("/run-query?" + new URLSearchParams(params).toString())
+    return fetch(
+      process.env.REACT_APP_API_URL +
+        "/run-query?" +
+        new URLSearchParams(params).toString()
+    )
       .then((res) => {
         if (!res.ok) throw Error("could not fetch the data for that ressource");
         return res.json();
@@ -52,9 +57,7 @@ const Demo = () => {
       .then((data) => {
         return data;
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
   let execParamsProps = {

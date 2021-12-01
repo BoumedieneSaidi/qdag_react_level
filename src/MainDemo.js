@@ -6,6 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataTable from "react-data-table-component";
 const axios = require("axios").default;
+require("dotenv").config();
 const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
   /************************* Data Table  ******************************/
   const [currQuery, setCurrQuery] = useState({});
@@ -17,11 +18,10 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
     //setLoading(true);
 
     const response = await axios.get(
-      `http://localhost:3005/fetchData?page=${page}&per_page=${perPage}&delay=1&resultFile=${currQuery["resultFile"]}`
+      process.env.REACT_APP_API_URL +
+        `/fetchData?page=${page}&per_page=${perPage}&delay=1&resultFile=${currQuery["resultFile"]}`
     );
-    console.log("response datatata,", response.data.data);
     setResultData(response.data.data);
-    console.log("Total", response.data);
     //setLoading(false);
   };
 
@@ -33,7 +33,8 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
     //setLoading(true);
 
     const response = await axios.get(
-      `http://localhost:3005/fetchData?page=${page}&per_page=${newPerPage}&delay=1&resultFile=${currQuery["resultFile"]}`
+      process.env.REACT_APP_API_URL +
+        `/fetchData?page=${page}&per_page=${newPerPage}&delay=1&resultFile=${currQuery["resultFile"]}`
     );
 
     setResultData(response.data.data);
@@ -81,11 +82,10 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
   const [showResult, setShowResult] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   /** fetch data queries return {"queriesWithResults":[]} */
-  const { data, setData } = useFetch("/demo");
+  const { data, setData } = useFetch(process.env.REACT_APP_API_URL + "/demo");
   /** Run Query: update the existing queries after getting the result*/
   const hundleRunQuery = () => {
     Promise.all([runQuery()]).then(([newData]) => {
-      console.log(newData);
       if (Object.keys(newData["currentQuery"]).length === 0) {
         alert("OOOOh lala sorry we don't have this db or this query");
         setIsLoading(false);
@@ -96,7 +96,6 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
       setCurrQuery(newData["currentQuery"]);
       setResultData(newData["currentQuery"]["result"]);
       setTotalRows(newData["currentQuery"]["nbrRes"]);
-      console.log("HHHHHHA HUYA:", newData["currentQuery"]);
       setResultType(1);
       setIsSpa(newData["currentQuery"]["isSpatial"] === "true");
       if (showRow === false) setShowRow(true);

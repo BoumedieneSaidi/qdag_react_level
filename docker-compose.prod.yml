@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: react-ct
+    image: react-img
+    build:
+      context: .
+      target: production
