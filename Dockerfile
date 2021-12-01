@@ -4,7 +4,7 @@ ENV NODE_ENV production
 WORKDIR /app
 # Cache and Install dependencies
 COPY package.json .
-RUN npm install --production
+RUN npm install --production --no-audit
 RUN npm install styled-components
 # Copy app files
 COPY . .
