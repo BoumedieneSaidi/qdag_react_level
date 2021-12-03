@@ -6,7 +6,7 @@ import PublicationList from "./static_pages/PublicationList";
 import Demo from "./Demo";
 function App() {
   return (
-    <Router basename={"/qdag"}>
+    <Router basename="/qdag">
       <Navbar />
       <Switch>
         <Route exact path="/">
