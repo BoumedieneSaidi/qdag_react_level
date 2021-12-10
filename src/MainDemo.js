@@ -123,10 +123,12 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
             {
               name: "Row No",
               selector: (row) => row.no,
+              grow: 1,
             },
             {
               name: "Mapping",
               selector: (row) => row.mapping,
+              grow: 3,
             },
           ]}
           paginationPerPage={perPage}

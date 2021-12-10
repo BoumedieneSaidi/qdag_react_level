@@ -25,10 +25,14 @@ const Stat = ({ data }) => {
     },
     hAxis: {
       title: "Queries",
-      minValue: 0,
     },
     vAxis: {
-      title: "Exec Time",
+      title: "Exec Time in ms",
+      scaleType: "log",
+      ticks: [
+        0, 500, 1000, 3000, 4000, 6000, 8000, 12000, 15000, 20000, 30000, 60000,
+        80000,
+      ],
     },
     //isStacked:true
   };
