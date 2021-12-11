@@ -3,6 +3,8 @@ import Home from "./static_pages/Home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Contact from "./static_pages/Contact";
 import PublicationList from "./static_pages/PublicationList";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Preferences from "./components/Preferences/Preferences";
 import Demo from "./Demo";
 function App() {
   return (
@@ -20,6 +22,12 @@ function App() {
         </Route>
         <Route path="/publications">
           <PublicationList />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
+        <Route path="/preferences">
+          <Preferences />
         </Route>
       </Switch>
     </Router>

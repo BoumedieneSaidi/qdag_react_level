@@ -1,5 +1,4 @@
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
-import Form from "react-bootstrap/Form";
 import { DropDownTreeComponent } from "@syncfusion/ej2-react-dropdowns";
 //import { useState } from 'react';
 
@@ -96,7 +95,6 @@ const ExecParamsSideBar = (execParamsProps) => {
     );
   });
   let queriesData = [];
-  console.log("Selected query:" + (selectedQueryRadio === "Complex 2"));
   for (const subgroup of Object.keys(databases[currentDB])) {
     let nodeChildArr = [];
     for (const qr of Object.keys(databases[currentDB][subgroup])) {
@@ -175,8 +173,9 @@ const ExecParamsSideBar = (execParamsProps) => {
           id="dropdowntree"
           fields={fields}
           select={(e) => {
-            console.log(e.itemData);
-            changeQuery(e.itemData.text, e.itemData.parentID);
+            if (e.itemData.parentID !== null) {
+              changeQuery(e.itemData.text, e.itemData.parentID);
+            }
           }}
         />
         <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">

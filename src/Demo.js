@@ -9,7 +9,6 @@ const Demo = () => {
   const defaultDB = Object.keys(config.databases)[0];
   const defaultGp = Object.keys(config.databases[defaultDB])[0];
   //const [currentGp, setCurrentGp] = useState(defaultGp);
-  console.log("def gp:", defaultGp);
   const [currentDB, setCurrentDB] = useState(defaultDB);
   const defaultQuery = Object.keys(config.databases[defaultDB][defaultGp])[0];
   const [query, setQuery] = useState(
@@ -28,14 +27,12 @@ const Demo = () => {
 
   /******************** Hundle changing query and database ****************/
   const changeQuery = (newQuery, group) => {
-    console.log(newQuery, group);
     setSelectedQueryRadio(newQuery);
     setQuery(config.databases[currentDB][group][newQuery]);
   };
   const changeDB = (newDB) => {
     setCurrentDB(newDB);
     let firstGrp = Object.keys(config.databases[newDB])[0];
-    console.log("First grop:", firstGrp);
     let newQKey = Object.keys(config.databases[newDB][firstGrp])[0];
     setSelectedQueryRadio(newQKey);
     setQuery(config.databases[newDB][firstGrp][newQKey]);

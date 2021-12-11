@@ -86,6 +86,18 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
   /** Run Query: update the existing queries after getting the result*/
   const hundleRunQuery = () => {
     Promise.all([runQuery()]).then(([newData]) => {
+      if (
+        newData === undefined ||
+        newData === null ||
+        Object.keys(newData) === 0 ||
+        newData["currentQuery"] === undefined ||
+        newData["currentQuery"] === null ||
+        Object.keys(newData["currentQuery"]).length === 0
+      ) {
+        setIsLoading(false);
+        alert("There is an error somewhere please repeat the execution");
+        return;
+      }
       if (Object.keys(newData["currentQuery"]).length === 0) {
         alert("OOOOh lala sorry we don't have this db or this query");
         setIsLoading(false);
