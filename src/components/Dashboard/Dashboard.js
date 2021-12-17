@@ -6,6 +6,7 @@ async function changeSpringUrl(springUrl) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      credentials: "include",
     },
     body: JSON.stringify(springUrl),
   }).then((data) => data.json());

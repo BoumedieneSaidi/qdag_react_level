@@ -19,7 +19,8 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
 
     const response = await axios.get(
       process.env.REACT_APP_API_URL +
-        `/fetchData?page=${page}&per_page=${perPage}&delay=1&resultFile=${currQuery["resultFile"]}`
+        `/fetchData?page=${page}&per_page=${perPage}&delay=1&resultFile=${currQuery["resultFile"]}`,
+      { credentials: "include" }
     );
     setResultData(response.data.data);
     //setLoading(false);
@@ -34,7 +35,8 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
 
     const response = await axios.get(
       process.env.REACT_APP_API_URL +
-        `/fetchData?page=${page}&per_page=${newPerPage}&delay=1&resultFile=${currQuery["resultFile"]}`
+        `/fetchData?page=${page}&per_page=${newPerPage}&delay=1&resultFile=${currQuery["resultFile"]}`,
+      { credentials: "include" }
     );
 
     setResultData(response.data.data);
@@ -166,7 +168,19 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
         <h1 className="h2">Query</h1>
         <div className="btn-toolbar mb-2 mb-md-0">
           <div className="btn-group mr-2">
-            <button className="btn btn-sm btn-outline-secondary">Clear</button>
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              onClick={() => {
+                fetch(process.env.REACT_APP_API_URL + "/clear-session", {
+                  credentials: "include",
+                });
+                setData(undefined);
+                /*setIsLoading(true);
+                hundleRunQuery();*/
+              }}
+            >
+              Clear Session
+            </button>
             <button
               className="btn btn-sm btn-outline-secondary"
               id="run_btn"

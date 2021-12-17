@@ -8,7 +8,7 @@ const useFetch = (url) => {
   useEffect(() => {
     const abortCont = new AbortController();
 
-    fetch(url, { signal: abortCont.signal })
+    fetch(url, { signal: abortCont.signal, credentials: "include" })
       .then((res) => {
         if (!res.ok) throw Error("could not fetch the data for that ressource");
         return res.json();

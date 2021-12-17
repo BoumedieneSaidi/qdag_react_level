@@ -53,7 +53,8 @@ const Demo = () => {
     return fetch(
       process.env.REACT_APP_API_URL +
         "/run-query?" +
-        new URLSearchParams(params).toString()
+        new URLSearchParams(params).toString(),
+      { credentials: "include" }
     )
       .then((res) => {
         if (!res.ok) throw Error("could not fetch the data for that ressource");

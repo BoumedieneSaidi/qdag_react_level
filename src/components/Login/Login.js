@@ -6,6 +6,7 @@ async function loginUser(credentials) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      credentials: "include",
     },
     body: JSON.stringify(credentials),
   }).then((data) => data.json());
