@@ -5,6 +5,8 @@ import Map from "./Map";
 import Spinner from "react-bootstrap/Spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataTable from "react-data-table-component";
+import VisNetwork from "./VisNetwork";
+import ResultGraph from "./ResultGraph";
 const axios = require("axios").default;
 require("dotenv").config();
 const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
@@ -13,6 +15,9 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [resultData, setResultData] = useState([]);
+  const [columns, setColumns] = useState([]);
+  const [finalResult, setFinalResult] = useState([]);
+  const [queryView,setQueryView] = useState("Text");//Text or Graph
   //const [loading, setLoading] = useState(false);
   const fetchMappings = async (page) => {
     //setLoading(true);
@@ -83,6 +88,7 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
   const [resultType, setResultType] = useState(1);
   const [showResult, setShowResult] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
   /** fetch data queries return {"queriesWithResults":[]} */
   const { data, setData } = useFetch(process.env.REACT_APP_API_URL + "/demo");
   /** Run Query: update the existing queries after getting the result*/
@@ -114,6 +120,33 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
       setIsSpa(newData["currentQuery"]["isSpatial"] === "true");
       if (showRow === false) setShowRow(true);
       setIsLoading(false);
+      let columns = [{
+        name: "Row No",
+        selector: (row) => row.no,
+        grow: 0.1,
+      }];
+      let queryProjectVars = query.split("\n")[0].split(" ").filter((arg) => arg.startsWith("?"));
+      let finalResult = newData["currentQuery"]["result"].map((reslt) => {
+        let toReturn = {};
+        toReturn["no"] = reslt.no;
+        let resultArgs = reslt.mapping.split("|");
+        let i = 0;
+        queryProjectVars.forEach(arg => {
+            toReturn[arg] = resultArgs[i++];
+        });
+        return toReturn;
+      });
+      queryProjectVars.forEach(element => {
+        columns.push({
+          name: element,
+          selector: (row) => row[element],
+          grow: 1,
+          wrap:true
+        })
+      });
+      console.log(columns,finalResult);
+      setColumns(columns)
+      setFinalResult(finalResult);
       /*if(Object.keys(newQueryWithResult).length !== 0){
                 let newArr = [...data["queriesWithResults"]];
                 newArr[data["queriesWithResults"].length] = newQueryWithResult;
@@ -127,41 +160,40 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
     });
   };
   /**********************************************************************/
+  
+  
   let resultSection = "";
-  if (showResult && resultType === 1)
+  if (showResult && resultType === 1){
     resultSection = (
       <div className="container-fluid">
         <DataTable
           title="Mappings"
-          columns={[
-            {
-              name: "Row No",
-              selector: (row) => row.no,
-              grow: 1,
-            },
-            {
-              name: "Mapping",
-              selector: (row) => row.mapping,
-              grow: 3,
-            },
-          ]}
+          columns={columns}
           paginationPerPage={perPage}
-          data={resultData}
+          data={finalResult}
           pagination
           paginationServer
           paginationTotalRows={totalRows}
           responsive
+          expandOnRowClicked
           onChangeRowsPerPage={handlePerRowsChange}
           onChangePage={handlePageChange}
         />
       </div>
     );
+  }
   else if (showResult && resultType === 2)
     resultSection = (
       <div className="container-fluid" id="mappa">
         <Map />
       </div>
     );
+  else if(showResult && resultType === 3){
+    resultSection = (
+      <ResultGraph result={resultData} query={query}/>
+    );
+  }
+    //Construct query graph
   return (
     <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -175,11 +207,30 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
                   credentials: "include",
                 });
                 setData(undefined);
+                window.location.reload(); 
                 /*setIsLoading(true);
                 hundleRunQuery();*/
               }}
             >
               Clear Session
+            </button>
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              id="graph_view"
+              onClick={() => {
+                setQueryView("Graph")
+              }}
+            >
+              Graph View
+            </button>
+            <button
+              className="btn btn-sm btn-outline-secondary"
+              id="text_view"
+              onClick={() => {
+                setQueryView("Text")
+              }}
+            >
+              Text View
             </button>
             <button
               className="btn btn-sm btn-outline-secondary"
@@ -195,6 +246,7 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
         </div>
       </div>
       <div className="container-fluid">
+      {queryView === "Text" ? (
         <form>
           <div className="form-group">
             <textarea
@@ -205,7 +257,8 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
               onChange={() => {}}
             />
           </div>
-        </form>
+        </form>):
+        (query && <VisNetwork key={query} query={query}/>)}
       </div>
 
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -238,6 +291,16 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
                 }}
               >
                 Spatial
+              </button>
+            )}
+            {showResult && showRow  && (
+              <button
+                className="btn btn-sm btn-outline-secondary"
+                onClick={() => {
+                  setResultType(3);
+                }}
+              >
+                Graph
               </button>
             )}
           </div>

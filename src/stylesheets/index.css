@@ -6,6 +6,16 @@
 @import "../../node_modules/@syncfusion/ej2-react-dropdowns/styles/material.css";
 /* base styles */
 
+.vis-network {
+  position: relative;
+  height: 100%;
+}
+
+#net-container {
+  position: relative;
+  height: 400px;
+  width: inherit;
+}
 body {
   font-size: 0.875rem;
 }

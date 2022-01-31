@@ -95,13 +95,14 @@ const ExecParamsSideBar = (execParamsProps) => {
     );
   });
   let queriesData = [];
+  console.log(selectedQueryRadio);
   for (const subgroup of Object.keys(databases[currentDB])) {
     let nodeChildArr = [];
     for (const qr of Object.keys(databases[currentDB][subgroup])) {
       nodeChildArr.push({
         nodeId: qr,
         nodeText: qr,
-        //selected: selectedQueryRadio === qr ? true : false,
+        //selected: selectedQueryRadio === qr,
       });
     }
     queriesData.push({
@@ -177,6 +178,7 @@ const ExecParamsSideBar = (execParamsProps) => {
               changeQuery(e.itemData.text, e.itemData.parentID);
             }
           }}
+          value={[selectedQueryRadio]}
         />
         <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
           <span className="font-weight-bold">Is Spatial</span>

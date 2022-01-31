@@ -51,7 +51,7 @@
     "node_address":"http://localhost:",
     "node_port":3005,
     "defautl_res_message":"> Welcome to RDF_QDAG",
-    "is_spatial":true,
-    "is_elag":true,
-    "rdf_too":true
+    "is_spatial":false,
+    "is_elag":false,
+    "rdf_too":false
 }
