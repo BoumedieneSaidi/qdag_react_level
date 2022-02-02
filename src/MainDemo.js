@@ -27,6 +27,34 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
         `/fetchData?page=${page}&per_page=${perPage}&delay=1&resultFile=${currQuery["resultFile"]}`,
       { credentials: "include" }
     );
+    console.log("Fetched data:",response.data.data);
+    let columns = [{
+      name: "Row No",
+      selector: (row) => row.no,
+      grow: 0.1,
+    }];
+    let queryProjectVars = query.split("\n")[0].split(" ").filter((arg) => arg.startsWith("?"));
+    let finalResult = response.data.data.map((reslt) => {
+      let toReturn = {};
+      toReturn["no"] = reslt.no;
+      let resultArgs = reslt.mapping.split("|");
+      let i = 0;
+      queryProjectVars.forEach(arg => {
+          toReturn[arg] = resultArgs[i++];
+      });
+      return toReturn;
+    });
+    queryProjectVars.forEach(element => {
+      columns.push({
+        name: element,
+        selector: (row) => row[element],
+        grow: 1,
+        wrap:true
+      })
+    });
+    console.log(columns,finalResult);
+    setColumns(columns)
+    setFinalResult(finalResult);
     setResultData(response.data.data);
     //setLoading(false);
   };

@@ -14,6 +14,7 @@ class ResultGraph extends Component {
     super();
     this.result = props.result;
     this.query = props.query;
+    console.log("result",this.result);
     this.updateData();
     this.network = {};
     this.appRef = createRef();
@@ -45,15 +46,30 @@ class ResultGraph extends Component {
                 nodesIds.set(node,i++)
                 datasetNodes.push({ id: nodesIds.get(node), label: node})
             }
+        }
+        for (let index = 0; index < vars.length; index++) {
+              const node = truplet[index];
+              if(!nodesIds.has(node)){
+                  nodesIds.set(node,i++)
+                  datasetNodes.push({ id: nodesIds.get(node), label: node})
+              }
             for(let i = 0 ; i < vars.length; i++){
                 let link = vars[index]+ "," + vars[i];
+                if(truplet[index] === "<http://db.uwaterloo.ca/~galuc/wsdbm/Review724254>"){
+                    console.log("le9iiiiiiiiiiiiiiiiiiiiiteha ouiiiiiiiiiiiiiiiiiiii",link,links.has(link),truplet[index]);
+                }
                 if(links.has(link)){
+                  if(truplet[index] === "<http://db.uwaterloo.ca/~galuc/wsdbm/Review724254>"){
+                    console.log("le9iiiiiiiiiiiiiiiiiiiiiteha ouiiiiiiiiiiiiiiiiiiii directly",truplet[index] ,truplet[i]);
+                }
                     datasetEdges.push({from:nodesIds.get(truplet[index]),to:nodesIds.get(truplet[i]),label:links.get(link)})
                 }
             }
         }
         
     });
+    console.log(datasetNodes);
+    console.log(datasetEdges);
     let nodes = new DataSet(datasetNodes);
     let edges  = new DataSet(datasetEdges);
     this.data = {

@@ -129,56 +129,29 @@ const ExecParamsSideBar = (execParamsProps) => {
         <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
           <span className="font-weight-bold">Queries</span>
         </h5>
-        <ul className="nav flex-column mb-2 query_list">{/*queriesList*/}</ul>
-        {/*<Form.Select
-          aria-label="Default select example"
-          onChange={(e) => {
-            changeQuery(e.target.value);
-          }}
-        >
-          <option>Choose a query</option>
-          <optgroup label="Complex">
-            <option value="C1.in">Complex 1</option>
-            <option value="C2.in">Complex 2</option>
-            <option value="C3.in">Complex 3</option>
-          </optgroup>
-          <optgroup label="Snow Flake">
-            <option value="F2.in">Snow Flake shaped1</option>
-            <option value="F3.in">Snow Flake shaped2</option>
-            <option value="F4.in">Snow Flake shaped3</option>
-          </optgroup>
-          <optgroup label="Stars">
-            <option value="S1.in">Star 1</option>
-            <option value="S2.in">Star 2</option>
-            <option value="S6.in">Star 3</option>
-          </optgroup>
-          <optgroup label="Linear">
-            <option value="L1.in">Linear 1</option>
-            <option value="L2.in">Linear 2</option>
-            <option value="L4.in">Linear 3</option>
-          </optgroup>
-          <optgroup label="Grouping">
-            <option value="G1.in">Grouping 1</option>
-            <option value="G2.in">Grouping 2</option>
-            <option value="G3.in">Grouping 3</option>
-            <option value="G4.in">Grouping 4</option>
-          </optgroup>
-          <optgroup label="Sorting">
-            <option value="O1.in">Sorting 1</option>
-            <option value="O2.in">Sorting 2</option>
-            <option value="O3.in">Sorting 3</option>
-            <option value="O4.in">Sorting 4</option>
-          </optgroup>
-        </Form.Select>*/}
         <DropDownTreeComponent
           id="dropdowntree"
+          simpleSelect = {true}
           fields={fields}
           select={(e) => {
+            if(e.itemData.parentID === null){
+              let selectedGroup = queriesData.filter((group)=>
+                group["nodeId"] === e.itemData.id
+              );
+              e.itemData = {
+                id:selectedGroup[0]["nodeChild"][0]["nodeText"],
+                text:selectedGroup[0]["nodeChild"][0]["nodeId"],
+                parentID:e.itemData.id
+              }
+              changeQuery(e.itemData.text, e.itemData.parentID);
+            }
             if (e.itemData.parentID !== null) {
+              console.log(e.itemData);
               changeQuery(e.itemData.text, e.itemData.parentID);
             }
           }}
           value={[selectedQueryRadio]}
+          onAction= {(node,action) => console.log(node,action)}
         />
         <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
           <span className="font-weight-bold">Is Spatial</span>

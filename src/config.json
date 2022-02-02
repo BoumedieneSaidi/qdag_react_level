@@ -41,8 +41,8 @@
         },
         "Yago":{
             "Spatial":{
-                "RDF First":"SELECT ?p WHERE\n{\n?p <hasGivenName> ?n .\n?p <hasFamilyName> ?f .\n?p <hasWonPrize> ?w .\n?p <diedIn> ?c .\n?c <hasGeometry> ?g .\n}\nFILTER ?g INTERSECTS \"POLYGON((-100 20, -80 20, -80 40, -100 40, -100 20))\";\n",
-                "Spatial First":"SELECT ?c WHERE\n{\n?c <hasGeometry> ?g .\n}\nFILTER ?g INTERSECTS \"POLYGON((-105 45, -100 45, -100 50, -105 50, -105 45))\";"
+                "Yago 1":"SELECT ?p WHERE\n{\n?p <hasGivenName> ?n .\n?p <hasFamilyName> ?f .\n?p <hasWonPrize> ?w .\n?p <diedIn> ?c .\n?c <hasGeometry> ?g .\n}\nFILTER ?g INTERSECTS \"POLYGON((-100 20, -80 20, -80 40, -100 40, -100 20))\";\n",
+                "Yago 2":"SELECT ?c WHERE\n{\n?c <hasGeometry> ?g .\n}\nFILTER ?g INTERSECTS \"POLYGON((-105 45, -100 45, -100 50, -105 50, -105 45))\";"
             }
         }
     },
