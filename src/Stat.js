@@ -8,7 +8,16 @@ const Stat = ({ data }) => {
         if (data["rDF3XSeries"][key] !== undefined)
           arr.push(data["rDF3XSeries"][key]);
         else arr.push(0);
-      } else if (i > 0)
+      }else if(data["isVirtuosoExecuted"] && data["isRDFExecuted"] && i === data["queryParamsGroups"].length - 2){
+        if (data["virtuosoSeries"][key] !== undefined)
+          arr.push(data["virtuosoSeries"][key]);
+        else arr.push(0);
+      } else if(data["isVirtuosoExecuted"] && !data["isRDFExecuted"] && i === data["queryParamsGroups"].length - 1){
+        if (data["virtuosoSeries"][key] !== undefined)
+          arr.push(data["virtuosoSeries"][key]);
+        else arr.push(0);
+      } 
+      else if (i > 0)
         arr.push(
           value[serieConf] !== undefined ? value[serieConf]["execTimeQDAG"] : 0
         );

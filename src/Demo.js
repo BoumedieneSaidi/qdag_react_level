@@ -22,6 +22,7 @@ const Demo = () => {
   const [isElag, setIsElag] = useState(config.is_elag);
   const [optimizer, setOptimizer] = useState(config.optimizer_strategies[0]);
   const [rdfToo, setRdfToo] = useState(config.rdf_too);
+  const [virtuosoToo, setVirtuosoToo] = useState(config.virtuoso_too);
   const [result, setResult] = useState(config.defautl_res_message);
   /**********************************************************************/
 
@@ -48,6 +49,7 @@ const Demo = () => {
       isSpatial: isSpatial,
       spatialStrategy: spatialStrategy,
       rdfToo: rdfToo,
+      virtuosoToo: virtuosoToo,
       queryName: selectedQueryRadio,
     };
     return fetch(
@@ -82,6 +84,8 @@ const Demo = () => {
     setOptimizer: setOptimizer,
     rdfToo: rdfToo,
     setRdfToo: setRdfToo,
+    virtuosoToo: virtuosoToo,
+    setVirtuosoToo: setVirtuosoToo,
     optimizerStrategies: config.optimizer_strategies,
     spatialStrategies: config.spatial_strategies,
   };

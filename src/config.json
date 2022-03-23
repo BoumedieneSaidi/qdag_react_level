@@ -39,10 +39,55 @@
             "Sorting 4":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 WHERE\n{\n?v0 <http://schema.org/contentRating> ?v1 .\n?v0 <http://schema.org/contentSize> ?v2 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre42> .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v5 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate> ?v6 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v0 .\n}\nORDER BY ?v6"
             }
         },
+        "Watdiv1000m":{
+            "Complex":{
+            "Complex 1":"SELECT ?v0 ?v4 ?v6 ?v7 WHERE\n{\n?v0 <http://schema.org/caption> ?v1 .\n?v0 <http://schema.org/text> ?v2 .\n?v0 <http://schema.org/contentRating> ?v3 .\n?v0 <http://purl.org/stuff/rev#hasReview> ?v4 .\n?v4 <http://purl.org/stuff/rev#title> ?v5 .\n?v4 <http://purl.org/stuff/rev#reviewer> ?v6 .\n?v7 <http://schema.org/actor> ?v6 .\n?v7 <http://schema.org/language> ?v8 .\n}\n",
+            "Complex 2":"SELECT ?v0 ?v3 ?v4 ?v8 WHERE\n{\n?v0 <http://schema.org/legalName> ?v1 .\n?v0 <http://purl.org/goodrelations/offers> ?v2 .\n?v2 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country5> .\n?v2 <http://purl.org/goodrelations/includes> ?v3 .\n?v4 <http://schema.org/jobTitle> ?v5 .\n?v4 <http://xmlns.com/foaf/homepage> ?v6 .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v7 .\n?v7 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v3 .\n?v3 <http://purl.org/stuff/rev#hasReview> ?v8 .\n?v8 <http://purl.org/stuff/rev#totalVotes> ?v9 .\n}\n",
+            "Complex 3":"SELECT ?v0 WHERE\n{\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v1 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/friendOf> ?v2 .\n?v0 <http://purl.org/dc/terms/Location> ?v3 .\n?v0 <http://xmlns.com/foaf/age> ?v4 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/gender> ?v5 .\n?v0 <http://xmlns.com/foaf/givenName> ?v6 .\n}"
+            },
+            "Snow Flake Shaped":{
+            "SnowFlake-Shaped_1":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 ?v7 WHERE\n{\n?v0 <http://xmlns.com/foaf/homepage> ?v1 .\n?v0 <http://ogp.me/ns#title> ?v2 .\n?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v3 .\n?v0 <http://schema.org/caption> ?v4 .\n?v0 <http://schema.org/description> ?v5 .\n?v1 <http://schema.org/url> ?v6 .\n?v1 <http://db.uwaterloo.ca/~galuc/wsdbm/hits> ?v7 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre55> .\n}\n",
+            "SnowFlake-Shaped_2":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 WHERE\n{\n?v0 <http://schema.org/contentRating> ?v1 .\n?v0 <http://schema.org/contentSize> ?v2 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre42> .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v5 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate> ?v6 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v0 .\n}",
+            "SnowFlake-Shaped_3":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 ?v7 ?v8 WHERE\n{\n?v0 <http://xmlns.com/foaf/homepage> ?v1 .\n?v2 <http://purl.org/goodrelations/includes> ?v0 .\n?v0 <http://ogp.me/ns#tag> <http://db.uwaterloo.ca/~galuc/wsdbm/Topic71> .\n?v0 <http://schema.org/description> ?v4 .\n?v0 <http://schema.org/contentSize> ?v8 .\n?v1 <http://schema.org/url> ?v5 .\n?v1 <http://db.uwaterloo.ca/~galuc/wsdbm/hits> ?v6 .\n?v1 <http://schema.org/language> <http://db.uwaterloo.ca/~galuc/wsdbm/Language0> .\n?v7 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v0 .\n}"
+            },
+            "Star":{
+            "Star 1":"SELECT ?v0 ?v1 ?v3 ?v4 ?v5 ?v6 ?v7 ?v8 ?v9 WHERE\n{\n?v0 <http://purl.org/goodrelations/includes> ?v1 .\n?V2 <http://purl.org/goodrelations/offers> ?v0 .\n?v0 <http://purl.org/goodrelations/price> ?v3 .\n?v0 <http://purl.org/goodrelations/serialNumber> ?v4 .\n?v0 <http://purl.org/goodrelations/validFrom> ?v5 .\n?v0 <http://purl.org/goodrelations/validThrough> ?v6 .\n?v0 <http://schema.org/eligibleQuantity> ?v7 .\n?v0 <http://schema.org/eligibleRegion> ?v8 .\n?v0 <http://schema.org/priceValidUntil> ?v9 .\n}\n",
+            "Star 2":"SELECT ?v0 ?v1 ?v3 WHERE\n{\n?v0 <http://purl.org/dc/terms/Location> ?v1 .\n?v0 <http://schema.org/nationality> <http://db.uwaterloo.ca/~galuc/wsdbm/Country14> .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/gender> ?v3 .\n?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://db.uwaterloo.ca/~galuc/wsdbm/Role2> .\n}\n",
+            "Star 3":"SELECT ?v0 ?v1 ?v2 WHERE\n{\n?v0 <http://purl.org/ontology/mo/conductor> ?v1 .\n?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v2 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre83> .\n}\n"
+            },
+            "Wild Card":{
+                "Wild Card 1":"SELECT ?v0 ?v2 ?v3 ?v4 ?v5 WHERE\n{\n?v0 <http://ogp.me/ns#tag> <http://db.uwaterloo.ca/~galuc/wsdbm/Topic172> .\n?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v2 .\n?v3 <http://schema.org/trailer> ?v4 .\n?v3 <http://schema.org/keywords> ?v5 .\n?v3 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> ?v0 .\n?v3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://db.uwaterloo.ca/~galuc/wsdbm/ProductCategory2> .\n}\nFILTER ?v4 match \"Website\"",
+                "Wild Card 2":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 ?v7 WHERE\n{\n?v0 <http://xmlns.com/foaf/homepage> ?v1 .\n?v0 <http://ogp.me/ns#title> ?v2 .\n?v0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?v3 .\n?v0 <http://schema.org/caption> ?v4 .\n?v0 <http://schema.org/description> ?v5 .\n?v1 <http://schema.org/url> ?v6 .\n?v1 <http://db.uwaterloo.ca/~galuc/wsdbm/hits> ?v7 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre55> .\n}\nFILTER ?v6 match \"elementary\"",
+                "Wild Card 3":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 WHERE\n{\n?v0 <http://schema.org/contentRating> ?v1 .\n?v0 <http://schema.org/contentSize> ?v2 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre42> .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v5 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate> ?v6 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v0 .\n}\nFILTER ?v6 MATCH \"2012-04\""
+            },
+            "Linear":{
+            "Linear 1":"SELECT ?v0 ?v2 ?v3 WHERE\n{\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/subscribes> <http://db.uwaterloo.ca/~galuc/wsdbm/Website18627> .\n?v2 <http://schema.org/caption> ?v3 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v2 .\n}\n",
+            "Linear 2":"SELECT ?v1 ?v2 WHERE\n{\n<http://db.uwaterloo.ca/~galuc/wsdbm/City107> <http://www.geonames.org/ontology#parentCountry> ?v1 .\n?v2 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> <http://db.uwaterloo.ca/~galuc/wsdbm/Product0> .\n?v2 <http://schema.org/nationality> ?v1 .\n}\n",
+            "Linear 3":"SELECT ?v0 ?v2 WHERE\n{\n?v0 <http://ogp.me/ns#tag> <http://db.uwaterloo.ca/~galuc/wsdbm/Topic132> .\n?v0 <http://schema.org/caption> ?v2 .\n}\n"
+            },
+            "Grouping":{
+            "Grouping 1":"SELECT ?v6 count(?v0) WHERE\n{\n?v0 <http://schema.org/caption> ?v1 .\n?v0 <http://schema.org/text> ?v2 .\n?v0 <http://schema.org/contentRating> ?v3 .\n?v0 <http://purl.org/stuff/rev#hasReview> ?v4 .\n?v4 <http://purl.org/stuff/rev#title> ?v5 .\n?v4 <http://purl.org/stuff/rev#reviewer> ?v6 .\n?v7 <http://schema.org/actor> ?v6 .\n?v7 <http://schema.org/language> ?v8 .\n}\nGROUP BY ?v6;\n",
+            "Grouping 2":"SELECT ?v0 count(?v9) WHERE\n{\n?v0 <http://schema.org/legalName> ?v1 .\n?v0 <http://purl.org/goodrelations/offers> ?v2 .\n?v2 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country5> .\n?v2 <http://purl.org/goodrelations/includes> ?v3 .\n?v4 <http://schema.org/jobTitle> ?v5 .\n?v4 <http://xmlns.com/foaf/homepage> ?v6 .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v7 .\n?v7 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v3 .\n?v3 <http://purl.org/stuff/rev#hasReview> ?v8 .\n?v8 <http://purl.org/stuff/rev#totalVotes> ?v9 .\n}\nGROUP BY ?v0;\n",
+            "Grouping 3":"SELECT ?v3 count(?v0) WHERE\n{\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v1 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/friendOf> ?v2 .\n?v0 <http://purl.org/dc/terms/Location> ?v3 .\n?v0 <http://xmlns.com/foaf/age> ?v4 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/gender> ?v5 .\n?v0 <http://xmlns.com/foaf/givenName> ?v6 .\n}\nGROUP BY ?v3;",
+            "Grouping 4":"SELECT ?v6 count(?v5) WHERE\n{\n?v0 <http://schema.org/contentRating> ?v1 .\n?v0 <http://schema.org/contentSize> ?v2 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre42> .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v5 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate> ?v6 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v0 .\n}\nGROUP BY ?v6"
+            },
+            "Sorting":{
+            "Sorting 1":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 WHERE\n{\n?v0 <http://schema.org/contentRating> ?v1 .\n?v0 <http://schema.org/contentSize> ?v2 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre42> .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v5 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate> ?v6 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v0 .\n}\nORDER BY ?v6",
+            "Sorting 2":"SELECT ?v0 ?v3 ?v4 ?v8 ?v9 WHERE\n{\n?v0 <http://schema.org/legalName> ?v1 .\n?v0 <http://purl.org/goodrelations/offers> ?v2 .\n?v2 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country5> .\n?v2 <http://purl.org/goodrelations/includes> ?v3 .\n?v4 <http://schema.org/jobTitle> ?v5 .\n?v4 <http://xmlns.com/foaf/homepage> ?v6 .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v7 .\n?v7 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v3 .\n?v3 <http://purl.org/stuff/rev#hasReview> ?v8 .\n?v8 <http://purl.org/stuff/rev#totalVotes> ?v9 .\n}\nORDER BY ?v8,?v9;\n",
+            "Sorting 3":"SELECT ?v0 WHERE\n{\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/likes> ?v1 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/friendOf> ?v2 .\n?v0 <http://purl.org/dc/terms/Location> ?v3 .\n?v0 <http://xmlns.com/foaf/age> ?v4 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/gender> ?v5 .\n?v0 <http://xmlns.com/foaf/givenName> ?v6 .\n}\nORDER BY ?v6\n",
+            "Sorting 4":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 WHERE\n{\n?v0 <http://schema.org/contentRating> ?v1 .\n?v0 <http://schema.org/contentSize> ?v2 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre42> .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v5 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate> ?v6 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v0 .\n}\nORDER BY ?v6"
+            }
+        },
         "Yago":{
             "Spatial":{
                 "Yago 1":"SELECT ?p WHERE\n{\n?p <hasGivenName> ?n .\n?p <hasFamilyName> ?f .\n?p <hasWonPrize> ?w .\n?p <diedIn> ?c .\n?c <hasGeometry> ?g .\n}\nFILTER ?g INTERSECTS \"POLYGON((-100 20, -80 20, -80 40, -100 40, -100 20))\";\n",
-                "Yago 2":"SELECT ?c WHERE\n{\n?c <hasGeometry> ?g .\n}\nFILTER ?g INTERSECTS \"POLYGON((-105 45, -100 45, -100 50, -105 50, -105 45))\";"
+                "Yago 2":"SELECT ?c WHERE\n{\n?c <hasGeometry> ?g .\n}\nFILTER ?g INTERSECTS \"POLYGON((-105 45, -100 45, -100 50, -105 50, -105 45))\";",
+                "Yago 3":"SELECT ?p WHERE\n{\n?p <hasAcademicAdvisor> ?a .\n?a <worksAt> ?w .\n?w <isLocatedIn> ?l .\n?l <hasGeometry> ?g .\n};",
+                "Yago 4":"SELECT ?e WHERE \n{\n?e <happenedIn> ?l . \n?l <hasGeometry> ?g .\n};",
+                "Yago 5":"SELECT ?p WHERE\n{\n?p <hasGivenName> ?a .\n?p <hasFamilyName> ?b .\n?p <wasBornIn> ?c .\n?c <hasGeometry> ?g .\n};",
+                "Yago 6":"SELECT ?p WHERE\n{\n?p <graduatedFrom> ?u .\n?p <worksAt> ?w .\n?u <isLocatedIn> ?l .\n?l <hasGeometry> ?g .\n};",
+                "Yago 7":"SELECT ?e WHERE\n{\n?e <happenedIn> ?l .\n?l <hasGeometry> ?g .\n};",
+                "Yago 8":"SELECT ?p WHERE\n{\n?p <hasArea> ?a .\n?p <isLocatedIn> ?l .\n?l <hasGeometry> ?g .\n};"
             }
         }
     },
@@ -53,5 +98,6 @@
     "defautl_res_message":"> Welcome to RDF_QDAG",
     "is_spatial":false,
     "is_elag":false,
-    "rdf_too":false
+    "rdf_too":false,
+    "virtuoso_too":false
 }

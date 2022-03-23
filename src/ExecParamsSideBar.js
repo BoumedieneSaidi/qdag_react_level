@@ -20,6 +20,8 @@ const ExecParamsSideBar = (execParamsProps) => {
     setOptimizer,
     rdfToo,
     setRdfToo,
+    virtuosoToo,
+    setVirtuosoToo,
     optimizerStrategies,
   } = { ...execParamsProps };
   /***************** Construct Databases List *************/
@@ -95,7 +97,6 @@ const ExecParamsSideBar = (execParamsProps) => {
     );
   });
   let queriesData = [];
-  console.log(selectedQueryRadio);
   for (const subgroup of Object.keys(databases[currentDB])) {
     let nodeChildArr = [];
     for (const qr of Object.keys(databases[currentDB][subgroup])) {
@@ -146,7 +147,6 @@ const ExecParamsSideBar = (execParamsProps) => {
               changeQuery(e.itemData.text, e.itemData.parentID);
             }
             if (e.itemData.parentID !== null) {
-              console.log(e.itemData);
               changeQuery(e.itemData.text, e.itemData.parentID);
             }
           }}
@@ -204,6 +204,16 @@ const ExecParamsSideBar = (execParamsProps) => {
                 onChange={() => setRdfToo(!rdfToo)}
               />{" "}
               RDF 3X
+            </label>
+          </li>
+          <li className="nav-item nav-link">
+            <label>
+              <input
+                type="checkbox"
+                defaultChecked={virtuosoToo}
+                onChange={() => setVirtuosoToo(!virtuosoToo)}
+              />{" "}
+              VIRTUOSO
             </label>
           </li>
         </ul>

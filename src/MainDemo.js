@@ -27,7 +27,6 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
         `/fetchData?page=${page}&per_page=${perPage}&delay=1&resultFile=${currQuery["resultFile"]}`,
       { credentials: "include" }
     );
-    console.log("Fetched data:",response.data.data);
     let columns = [{
       name: "Row No",
       selector: (row) => row.no,
@@ -52,7 +51,6 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
         wrap:true
       })
     });
-    console.log(columns,finalResult);
     setColumns(columns)
     setFinalResult(finalResult);
     setResultData(response.data.data);
@@ -116,7 +114,6 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
   const [resultType, setResultType] = useState(1);
   const [showResult, setShowResult] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
   /** fetch data queries return {"queriesWithResults":[]} */
   const { data, setData } = useFetch(process.env.REACT_APP_API_URL + "/demo");
   /** Run Query: update the existing queries after getting the result*/
@@ -172,7 +169,6 @@ const MainDemo = ({ query, runQuery, result, setResult, nodeUrl }) => {
           wrap:true
         })
       });
-      console.log(columns,finalResult);
       setColumns(columns)
       setFinalResult(finalResult);
       /*if(Object.keys(newQueryWithResult).length !== 0){
