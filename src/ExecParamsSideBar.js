@@ -200,16 +200,6 @@ const ExecParamsSideBar = (execParamsProps) => {
             <label>
               <input
                 type="checkbox"
-                defaultChecked={rdfToo}
-                onChange={() => setRdfToo(!rdfToo)}
-              />{" "}
-              RDF 3X
-            </label>
-          </li>
-          <li className="nav-item nav-link">
-            <label>
-              <input
-                type="checkbox"
                 defaultChecked={virtuosoToo}
                 onChange={() => setVirtuosoToo(!virtuosoToo)}
               />{" "}

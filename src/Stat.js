@@ -4,11 +4,11 @@ const Stat = ({ data }) => {
   for (const [key, value] of Object.entries(data["queriesSeries"])) {
     let arr = [key];
     data["queryParamsGroups"].forEach((serieConf, i) => {
-      if (data["isRDFExecuted"] && i === data["queryParamsGroups"].length - 1) {
-        if (data["rDF3XSeries"][key] !== undefined)
-          arr.push(data["rDF3XSeries"][key]);
+      if (data["isVirtuosoExecuted"] && i === data["queryParamsGroups"].length - 1) {
+        if (data["virtuosoSeries"][key] !== undefined)
+          arr.push(data["virtuosoSeries"][key]);
         else arr.push(0);
-      }else if(data["isVirtuosoExecuted"] && data["isRDFExecuted"] && i === data["queryParamsGroups"].length - 2){
+      }/*else if(data["isVirtuosoExecuted"] && data["isRDFExecuted"] && i === data["queryParamsGroups"].length - 2){
         if (data["virtuosoSeries"][key] !== undefined)
           arr.push(data["virtuosoSeries"][key]);
         else arr.push(0);
@@ -16,7 +16,7 @@ const Stat = ({ data }) => {
         if (data["virtuosoSeries"][key] !== undefined)
           arr.push(data["virtuosoSeries"][key]);
         else arr.push(0);
-      } 
+      } */
       else if (i > 0)
         arr.push(
           value[serieConf] !== undefined ? value[serieConf]["execTimeQDAG"] : 0

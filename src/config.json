@@ -1,6 +1,6 @@
 {
     "databases":{
-        "Watdiv100m":{
+        "Watdiv100M":{
             "Complex":{
             "Complex 1":"SELECT ?v0 ?v4 ?v6 ?v7 WHERE\n{\n?v0 <http://schema.org/caption> ?v1 .\n?v0 <http://schema.org/text> ?v2 .\n?v0 <http://schema.org/contentRating> ?v3 .\n?v0 <http://purl.org/stuff/rev#hasReview> ?v4 .\n?v4 <http://purl.org/stuff/rev#title> ?v5 .\n?v4 <http://purl.org/stuff/rev#reviewer> ?v6 .\n?v7 <http://schema.org/actor> ?v6 .\n?v7 <http://schema.org/language> ?v8 .\n}\n",
             "Complex 2":"SELECT ?v0 ?v3 ?v4 ?v8 WHERE\n{\n?v0 <http://schema.org/legalName> ?v1 .\n?v0 <http://purl.org/goodrelations/offers> ?v2 .\n?v2 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country5> .\n?v2 <http://purl.org/goodrelations/includes> ?v3 .\n?v4 <http://schema.org/jobTitle> ?v5 .\n?v4 <http://xmlns.com/foaf/homepage> ?v6 .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v7 .\n?v7 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v3 .\n?v3 <http://purl.org/stuff/rev#hasReview> ?v8 .\n?v8 <http://purl.org/stuff/rev#totalVotes> ?v9 .\n}\n",
@@ -39,7 +39,7 @@
             "Sorting 4":"SELECT ?v0 ?v1 ?v2 ?v4 ?v5 ?v6 WHERE\n{\n?v0 <http://schema.org/contentRating> ?v1 .\n?v0 <http://schema.org/contentSize> ?v2 .\n?v0 <http://db.uwaterloo.ca/~galuc/wsdbm/hasGenre> <http://db.uwaterloo.ca/~galuc/wsdbm/SubGenre42> .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v5 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseDate> ?v6 .\n?v5 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v0 .\n}\nORDER BY ?v6"
             }
         },
-        "Watdiv1000m":{
+        "Watdiv1B":{
             "Complex":{
             "Complex 1":"SELECT ?v0 ?v4 ?v6 ?v7 WHERE\n{\n?v0 <http://schema.org/caption> ?v1 .\n?v0 <http://schema.org/text> ?v2 .\n?v0 <http://schema.org/contentRating> ?v3 .\n?v0 <http://purl.org/stuff/rev#hasReview> ?v4 .\n?v4 <http://purl.org/stuff/rev#title> ?v5 .\n?v4 <http://purl.org/stuff/rev#reviewer> ?v6 .\n?v7 <http://schema.org/actor> ?v6 .\n?v7 <http://schema.org/language> ?v8 .\n}\n",
             "Complex 2":"SELECT ?v0 ?v3 ?v4 ?v8 WHERE\n{\n?v0 <http://schema.org/legalName> ?v1 .\n?v0 <http://purl.org/goodrelations/offers> ?v2 .\n?v2 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country5> .\n?v2 <http://purl.org/goodrelations/includes> ?v3 .\n?v4 <http://schema.org/jobTitle> ?v5 .\n?v4 <http://xmlns.com/foaf/homepage> ?v6 .\n?v4 <http://db.uwaterloo.ca/~galuc/wsdbm/makesPurchase> ?v7 .\n?v7 <http://db.uwaterloo.ca/~galuc/wsdbm/purchaseFor> ?v3 .\n?v3 <http://purl.org/stuff/rev#hasReview> ?v8 .\n?v8 <http://purl.org/stuff/rev#totalVotes> ?v9 .\n}\n",
