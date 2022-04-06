@@ -3,22 +3,20 @@ import MainDemo from "./MainDemo";
 import { useState } from "react";
 require("dotenv").config();
 const Demo = () => {
-  /********************** Props variables ***************************/
+  /** 
+   * Init needed variable to manage execution series
+   * Default values are in config file
+  */
   const config = require("./config.json");
   const node_url = config.node_address + config.node_port;
   const defaultDB = Object.keys(config.databases)[0];
   const defaultGp = Object.keys(config.databases[defaultDB])[0];
-  //const [currentGp, setCurrentGp] = useState(defaultGp);
   const [currentDB, setCurrentDB] = useState(defaultDB);
   const defaultQuery = Object.keys(config.databases[defaultDB][defaultGp])[0];
-  const [query, setQuery] = useState(
-    config.databases[defaultDB][defaultGp][defaultQuery]
-  );
+  const [query, setQuery] = useState(config.databases[defaultDB][defaultGp][defaultQuery]);
   const [selectedQueryRadio, setSelectedQueryRadio] = useState(defaultQuery);
   const [isSpatial, setIsSpatial] = useState(config.is_spatial);
-  const [spatialStrategy, setSpatialStrategy] = useState(
-    config.spatial_strategies[0]
-  );
+  const [spatialStrategy, setSpatialStrategy] = useState(config.spatial_strategies[0]);
   const [isElag, setIsElag] = useState(config.is_elag);
   const [optimizer, setOptimizer] = useState(config.optimizer_strategies[0]);
   const [rdfToo, setRdfToo] = useState(config.rdf_too);
@@ -26,7 +24,7 @@ const Demo = () => {
   const [result, setResult] = useState(config.defautl_res_message);
   /**********************************************************************/
 
-  /******************** Hundle changing query and database ****************/
+  /******************** Hundle changing query and database****************/
   const changeQuery = (newQuery, group) => {
     setSelectedQueryRadio(newQuery);
     setQuery(config.databases[currentDB][group][newQuery]);
@@ -39,7 +37,9 @@ const Demo = () => {
     setQuery(config.databases[newDB][firstGrp][newQKey]);
   };
   /************************************************************************/
-  /** Run Query : it need params from the two component main demo and execPARASM <Communication> */
+  /** Run Query : it need params from the two component main demo and execParams 
+   *  Get the node URL from env file
+  */
   const runQuery = () => {
     var params = {
       currentDB: currentDB,
@@ -53,21 +53,16 @@ const Demo = () => {
       queryName: selectedQueryRadio,
     };
     return fetch(
-      process.env.REACT_APP_API_URL +
-        "/run-query?" +
-        new URLSearchParams(params).toString(),
-      { credentials: "include" }
+        process.env.REACT_APP_API_URL + "/run-query?" + new URLSearchParams(params).toString()
+        ,{ credentials: "include" }
     )
-      .then((res) => {
-        if (!res.ok) throw Error("could not fetch the data for that ressource");
-        return res.json();
-      })
-      .then((data) => {
-        return data;
-      })
-      .catch((err) => {});
+    .then((res) => { if (!res.ok) throw Error("could not fetch the data for that ressource");return res.json();})
+    .then((data) => {return data;})
+    .catch((err) => {});
   };
 
+
+  //Params to pass the left side component
   let execParamsProps = {
     isSpatial: isSpatial,
     setIsSpatial: setIsSpatial,
@@ -89,6 +84,7 @@ const Demo = () => {
     optimizerStrategies: config.optimizer_strategies,
     spatialStrategies: config.spatial_strategies,
   };
+  //Params to pass the main component
   let mainDemoProps = {
     query: query,
     runQuery: runQuery,
