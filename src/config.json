@@ -89,6 +89,16 @@
                 "Yago 7":"SELECT ?e WHERE\n{\n?e <happenedIn> ?l .\n?l <hasGeometry> ?g .\n};",
                 "Yago 8":"SELECT ?p WHERE\n{\n?p <hasArea> ?a .\n?p <isLocatedIn> ?l .\n?l <hasGeometry> ?g .\n};"
             }
+        },
+        "shs":{
+            "all":{
+                    "q1":"SELECT ?e WHERE\n{\n?e <http://xmlns.com/foaf/0.1/name> \"APOLLINAIRE Guillaume\" .\n}",
+                    "q2":"SELECT ?e WHERE\n{\n?e <http://xmlns.com/foaf/0.1/name> \"BUGUE-SUR-VEZERE\" .\n}",
+                    "q3":"SELECT ?e ?n WHERE\n{\n?e <http://xmlns.com/foaf/0.1/name> ?n .\n}\nFILTER ?n MATCHES 'APOLLINAIRE Guillaume';",
+                    "q4":"SELECT ?e WHERE\n{\n?e <http://xmlns.com/foaf/0.1/name> ?n .\n}",
+                    "q5":"SELECT ?e ?p ?n ?c ?d ?f ?nb WHERE\n{\n?e <http://xmlns.com/foaf/0.1/name> \"PICASSO Pablo\" .\n?e <http://www.shs.fr/univ-poitiers/participe> ?c .\n?p <http://www.shs.fr/univ-poitiers/participe> ?c .\n?p <http://xmlns.com/foaf/0.1/name> ?n .\n?c <http://www.shs.fr/univ-poitiers/debut> ?d .\n?c <http://www.shs.fr/univ-poitiers/fin> ?f .\n?c <http://www.shs.fr/univ-poitiers/nombre> ?nb .\n}",
+                    "q6":"SELECT ?e ?n ?c ?d ?f WHERE\n{\n?e <http://xmlns.com/foaf/0.1/name> \"PICASSO Pablo\" .\n?e <http://www.shs.fr/univ-poitiers/participe> ?c .\n?p <http://www.shs.fr/univ-poitiers/participe> ?c .\n?p <http://xmlns.com/foaf/0.1/name> ?n .\n?c <http://www.shs.fr/univ-poitiers/debut> ?d .\n?c <http://www.shs.fr/univ-poitiers/fin> ?f .\n?c <http://www.shs.fr/univ-poitiers/nombre> ?nb .\n}"
+            }
         }
     },
     "optimizer_strategies":["Go FAST","Heuristics"],
