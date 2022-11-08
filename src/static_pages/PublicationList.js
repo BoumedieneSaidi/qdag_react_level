@@ -8,6 +8,13 @@ const PublicationList = () => {
               <h1>Publications</h1>
               <hr />
               <ul>
+
+                <li>
+                  <strong>
+                  Boumediene Saidi, Houssameddine Yousfi, Amin Mesmoudi, Seif-Eddine Benkabou, Allel Hadjali and Houcine Matallah, 
+                  </strong>{" "}
+                  RDF_QDAG in action: Efficient RDF Data querying at scale, WISE, 2022: pp. 1-8
+                </li>
                 <li>
                   <strong>
                     Ishaq ZOUAGHI, Amin MESMOUDI, Jorge GALICIA AUYON, Ladjel

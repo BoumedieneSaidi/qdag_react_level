@@ -53,6 +53,7 @@ const Contact = () => {
                   Boumediene Saidi, ISAE-ENSMA (France), Tlemcen university
                   (Algeria)
                 </li>
+                <li>Seif-Eddine Benkabou, LIAS & Poitiers University (France)</li>
               </ul>
               <h3>Code (Chronological order of participation)</h3>
               <ul>
@@ -92,6 +93,9 @@ const Contact = () => {
                 </li>
                 <li>
                   Bomediene Saidi, Tlemcen university (Algeria), since Feb 2020
+                </li>
+                <li>
+                     Seif-Eddine Benkabou, LIAS & Poitiers University (France), since 2021 
                 </li>
               </ul>
             </div>
