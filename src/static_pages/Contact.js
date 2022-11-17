@@ -98,13 +98,13 @@ const Contact = () => {
                      Seif-Eddine Benkabou, LIAS & Poitiers University (France), since 2021 
                 </li>
                 <li>
-                     Salim Bousaleh, Tlemcen University (Algeria), since 2022 
+                     Salim Ahmed Boussalah, Tlemcen University (Algeria), since 2022 
                 </li>
                 <li>
                     Mohammed Hamadi, Tlemcen University (Algeria), since 2022 
                 </li>
                 <li>
-                    Ayoub Meghaber, Tlemcen University (Algeria), since 2022 
+                    Ayoub Meghabbar, Tlemcen University (Algeria), since 2022 
                 </li>
               </ul>
             </div>
